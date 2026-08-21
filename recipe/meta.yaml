@@ -1,0 +1,52 @@
+{% set name = "query-cache-protobuf" %}
+{% set version = "1.20.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
+  sha256: a93760b1834bc5a1149da7efec64e9cb2928a66f41d15886666de10c6b517fb9
+  patches:
+    - patches/0001-fix-pyproject-file.patch
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  entry_points:
+    - dbt-state = dbt_state.cli.main:cli
+  skip: true  # [py<39]
+
+requirements:
+  host:
+    - pip
+    - python
+    - hatchling
+  run:
+    - python
+    - packaging
+    # ImportError: Unsupported protobuf major version: 7. Supported major versions are 4, 5, and 6
+    - protobuf >=4.0.0,<7
+
+test:
+  imports:
+    - query_cache_protobuf
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://pypi.org/project/query-cache-protobuf
+  summary: Generated protobuf code for Query Cache
+  license: Apache-2.0
+  license_family: Apache
+  license_file: PKG-INFO
+  description: Generated protobuf code for Query Cache
+  doc_url: https://pypi.org/project/query-cache-protobuf
+  dev_url: https://pypi.org/project/query-cache-protobuf
+
+extra:
+  recipe-maintainers:
+    - Andrii-Osipov

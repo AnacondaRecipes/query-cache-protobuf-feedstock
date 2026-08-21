@@ -1,0 +1,38 @@
+From 2124046e1e322d5a47ad9b4ce7ba510bd409435f Mon Sep 17 00:00:00 2001
+From: Andrii Osipov <aosipov@anaconda.com>
+Date: Fri, 21 Aug 2026 00:54:22 -0700
+Subject: [PATCH] fix pyproject file
+
+---
+ pyproject.toml | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index ea4478d..9a177e0 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,19 +1,14 @@
+ [project]
+ name = "query-cache-protobuf"
+-dynamic = ["version"]
++version = "1.20.0"
+ description = "Generated protobuf code for Query Cache"
+-license = {file = "../../LICENSE"}
++license = "Apache-2.0"
+ requires-python = ">=3.9"
+ dependencies = [
+     "packaging",
+     "protobuf>=4.0.0",
+ ]
+ 
+-[tool.hatch.version]
+-source = "code"
+-path = "../../tooling/versions.py"
+-expression = "VERSIONS['query-cache-protobuf']"
+-
+ [build-system]
+ requires = ["hatchling"]
+ build-backend = "hatchling.build"
+-- 
+2.39.5 (Apple Git-154)
+
