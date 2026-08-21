@@ -1,0 +1,2 @@
+# query-cache-protobuf-feedstock
+the blessed package to manage your versions by scm tags
