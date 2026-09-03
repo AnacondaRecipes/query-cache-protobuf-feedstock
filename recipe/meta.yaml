@@ -1,5 +1,5 @@
 {% set name = "query-cache-protobuf" %}
-{% set version = "1.20.0" %}
+{% set version = "2.0.0" %}
 
 package:
   name: {{ name }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
-  sha256: a93760b1834bc5a1149da7efec64e9cb2928a66f41d15886666de10c6b517fb9
+  sha256: 306fd93b007a885f2bda303ec7f7293fa6ae52a363bcd88c8251a6b845eec2b3
   patches:
     - patches/0001-fix-pyproject-file.patch
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - dbt-state = dbt_state.cli.main:cli
